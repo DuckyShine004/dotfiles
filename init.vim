@@ -33,6 +33,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
    " Linter / formatters
    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+   Plug 'octol/vim-cpp-enhanced-highlight'
+   Plug 'rhysd/vim-clang-format'
+   Plug 'vim-syntastic/syntastic'
 
    " Git
    Plug 'airblade/vim-gitgutter'
@@ -62,6 +65,21 @@ function! ToggleTerminal(height)
     endif
 endfunction
 
+" Function run code command
+function! RunCode()
+    if &filetype == 'python'
+        execute 'w'
+        execute '!python3 %'
+    elseif &filetype == 'cpp'
+        let executable = expand('%:r') . (has('win32') ? '.exe' : '')
+        execute 'w'
+        execute '!rm -f ' . shellescape(executable)
+        execute '!g++ % -o ' . shellescape(executable) . ' && ./' . shellescape(executable)
+    else
+        echo "No run command for this filetype."
+    endif
+endfunction
+
 " Text and fonts
 filetype plugin indent on
 syntax on
@@ -69,12 +87,12 @@ set termguicolors
 colorscheme onedark
 
 " Run files and keybinds
-nnoremap <C-b> :w<CR>:!python3 %<CR>
+nnoremap <C-b> :call RunCode()<CR>
 
 " Keybinds
-nnoremap <leader>a ggVG
+nnoremap <C-a> ggVG
 vnoremap <leader>c "+y
-vnoremap <leader>v "+P
+vnoremap <leader>v "+p
 inoremap <C-H> <C-W>
 
 " Basic keybindings for Telescope
@@ -88,10 +106,11 @@ nnoremap <F2> :NERDTreeToggle<CR>
 nnoremap <F6> :call ToggleTerminal(12)<CR>
 
 " Tabs
-nnoremap <S-Tab> gT
-nnoremap <Tab> gt
 nnoremap <silent> <S-t> :tabnew<CR>
-
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Onedark Theme
 let g:onedark_termcolors=256
 
