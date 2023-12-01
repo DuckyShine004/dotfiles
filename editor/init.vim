@@ -31,6 +31,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'sheerun/vim-polyglot'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 
     " Linter / formatters
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
