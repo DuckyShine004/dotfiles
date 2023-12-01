@@ -15,8 +15,8 @@ set wildmenu
 
 " Tabs size
 set expandtab
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 
 call plug#begin('~/.local/share/nvim/plugged')
     " Appearance
@@ -31,7 +31,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'sheerun/vim-polyglot'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+    Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && npx --yes yarn install'}
 
     " Linter / formatters
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -80,12 +80,11 @@ endfunction
 function! RunCode()
     if &filetype == 'python'
         execute 'w'
-        execute '!python3 %'
+        call system('gnome-terminal -- bash -c "python3 ' . shellescape(@%) . '; echo Press ENTER to exit; read line"')
     elseif &filetype == 'cpp'
         let executable = expand('%:r') . (has('win32') ? '.exe' : '')
         execute 'w'
-        execute '!rm -f ' . shellescape(executable)
-        execute '!g++ % -o ' . shellescape(executable) . ' && ./' . shellescape(executable)
+        call system('gnome-terminal -- bash -c "g++ ' . shellescape(@%) . ' -o ' . shellescape(executable) . ' && ./' . shellescape(executable) . '; echo Press ENTER to exit; read line"')
     else
         echo "No run command for this filetype."
     endif
