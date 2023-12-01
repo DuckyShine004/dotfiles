@@ -43,6 +43,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
     " Git
     Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Functions
@@ -145,6 +146,7 @@ let g:airline_theme='onedark'
 " Airline Tabline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
