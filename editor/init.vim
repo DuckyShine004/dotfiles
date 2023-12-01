@@ -85,6 +85,21 @@ function! RunCode()
     endif
 endfunction
 
+" Closing tab and buffers
+function! CloseCurrentTabAndBuffer()
+    " Save the current buffer number
+    let currentBuffer = bufnr('%')
+
+    " Close the current buffer with confirmation for unsaved changes
+    execute 'confirm bdelete ' . currentBuffer
+
+    " Close the current tab if there are more than one tab open
+    if tabpagenr('$') > 1
+        execute 'tabclose'
+    endif
+endfunction
+
+
 " Text and fonts
 filetype plugin indent on
 syntax on
@@ -120,7 +135,7 @@ nnoremap <F6> :call ToggleTerminal(12)<CR>
 
 " Tabs
 nnoremap <C-t> :tabnew<CR>
-nnoremap <C-w> :tabclose<CR>
+nnoremap <C-w> :call CloseCurrentTabAndBuffer()<CR>
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
@@ -145,7 +160,6 @@ let g:airline_theme='onedark'
 
 " Airline Tabline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#left_sep = ''
@@ -153,6 +167,7 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#tabs_label = 'Tabs'
 
 " Gitgutter
 let g:gitgutter_async = 1
@@ -162,5 +177,6 @@ let g:gitgutter_realtime = 1
 augroup auto_commands
     autocmd BufWrite *.py call CocAction('format')
     autocmd FileType scss setlocal iskeyword+=@-@
+    autocmd BufEnter,WinEnter * if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1 | execute 'NERDTreeRefresh' | endif
 augroup END
 
