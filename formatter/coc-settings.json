@@ -1,0 +1,43 @@
+{
+   "suggest.noselect": false,
+   "suggest.acceptSuggestionOnEnter": "on",
+   "coc.preferences.formatOnSaveFiletypes": 
+   [
+      "javascript",
+      "typescript",
+      "json",
+      "javascriptreact",
+      "typescriptreact",
+      "html",
+      "css",
+      "yaml",
+      "python"
+   ],
+   "python.formatting.provider": "black",
+   "python.formatting.blackPath": "~/.local/bin/black",
+   "clangd.arguments": ["--background-index"],
+   "languageserver": {
+      "clangd": {
+         "command": "clangd",
+         "rootPatterns": ["compile_commands.json", ".vim/", ".git/", ".hg/"],
+         "filetypes": ["c", "cpp", "objc", "objcpp"]
+      },
+      "tsserver": {
+         "module": "typescript-language-server",
+         "args": ["--stdio"],
+         "filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+         "initializationOptions": {
+            "preferences": {
+               "importModuleSpecifier": "relative"
+            }
+         }
+      },
+      "eslint": {
+         "module": "eslint-language-server",
+         "args": ["--stdio"],
+         "filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
+      }
+   }
+}
+
+
