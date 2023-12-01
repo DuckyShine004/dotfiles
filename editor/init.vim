@@ -23,10 +23,11 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'joshdick/onedark.vim'
+    Plug 'morhetz/gruvbox'
 
     " Utilities
     Plug 'preservim/nerdtree'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'sheerun/vim-polyglot'
@@ -40,11 +41,15 @@ call plug#begin('~/.local/share/nvim/plugged')
     " Syntax highlighting and other features for React
     Plug 'mxw/vim-jsx'
     Plug 'pangloss/vim-javascript'
+    Plug 'lukas-reineke/indent-blankline.nvim'
 
     " Git
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
 call plug#end()
+
+" Lua linking
+luafile ~/.config/nvim/lua/config.lua
 
 " Functions
 let g:term_buf = 0
@@ -87,24 +92,38 @@ endfunction
 
 " Closing tab and buffers
 function! CloseCurrentTabAndBuffer()
-    " Save the current buffer number
     let currentBuffer = bufnr('%')
-
-    " Close the current buffer with confirmation for unsaved changes
     execute 'confirm bdelete ' . currentBuffer
 
-    " Close the current tab if there are more than one tab open
     if tabpagenr('$') > 1
         execute 'tabclose'
     endif
 endfunction
 
+" Change tab size
+function! ChangeTabSize()
+    echo "Select Tab Size:"
+    echo "1. 2 spaces"
+    echo "2. 4 spaces"
+    echo "3. 8 spaces"
+    let choice = input("Enter your choice: ")
+
+    if choice == '1'
+        set tabstop=2 shiftwidth=2 expandtab
+    elseif choice == '2'
+        set tabstop=4 shiftwidth=4 expandtab
+    elseif choice == '3'
+        set tabstop=8 shiftwidth=8 expandtab
+    else
+        echo "Invalid choice"
+    endif
+endfunction
 
 " Text and fonts
 filetype plugin indent on
 syntax on
 set termguicolors
-colorscheme onedark
+colorscheme gruvbox
 
 " Run files and keybinds
 nnoremap <C-b> :call RunCode()<CR>
@@ -118,9 +137,11 @@ nnoremap <M-v> :vsplit<CR>
 nnoremap <M-h> :split<CR>
 
 " Keybinds
-nnoremap <C-a> ggVG
+vnoremap <M-[> <gv
+vnoremap <M-]> >gv
 vnoremap <leader>c "+y
 vnoremap <leader>v "+p
+nnoremap <C-a> ggVG
 inoremap <C-H> <C-W>
 
 " Basic keybindings for Telescope
@@ -140,6 +161,7 @@ inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " Onedark Theme
 let g:onedark_termcolors=256
 
@@ -173,10 +195,19 @@ let g:airline#extensions#tabline#tabs_label = 'Tabs'
 let g:gitgutter_async = 1
 let g:gitgutter_realtime = 1
 
+" Manual commands
+command! ChangeTabSize call ChangeTabSize()
+
 " Automatic commands
 augroup auto_commands
     autocmd BufWrite *.py call CocAction('format')
     autocmd FileType scss setlocal iskeyword+=@-@
     autocmd BufEnter,WinEnter * if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1 | execute 'NERDTreeRefresh' | endif
 augroup END
+
+" Automatic Nerdtree hide slash
+augroup nerdtreehidecwd
+	  autocmd!
+	  autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
+augroup end
 
