@@ -15,7 +15,8 @@
    ],
    "python.formatting.provider": "black",
    "python.formatting.blackPath": "~/.local/bin/black",
-   "clangd.arguments": ["--background-index"],
+   "clangd.path": "/home/duckyshine04/.config/coc/extensions/coc-clangd-data/install/17.0.3/clangd_17.0.3/bin/clangd",
+   "clangd.arguments": ["--background-index", "-I/usr/include/c++/11","-I/usr/include/x86_64-linux-gnu/c++/11"],
    "languageserver": {
       "clangd": {
          "command": "clangd",
