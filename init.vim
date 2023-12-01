@@ -19,26 +19,30 @@ set shiftwidth=2
 set tabstop=2
 
 call plug#begin('~/.local/share/nvim/plugged')
-   " Appearance
-   Plug 'vim-airline/vim-airline'
-   Plug 'vim-airline/vim-airline-themes'
-   Plug 'ryanoasis/vim-devicons'
-   Plug 'joshdick/onedark.vim'
+    " Appearance
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'joshdick/onedark.vim'
 
-   " Utilities
-   Plug 'preservim/nerdtree'
-   Plug 'nvim-lua/plenary.nvim'
-   Plug 'nvim-telescope/telescope.nvim'
-   Plug 'sheerun/vim-polyglot'
+    " Utilities
+    Plug 'preservim/nerdtree'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'sheerun/vim-polyglot'
 
-   " Linter / formatters
-   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-   Plug 'octol/vim-cpp-enhanced-highlight'
-   Plug 'rhysd/vim-clang-format'
-   Plug 'vim-syntastic/syntastic'
+    " Linter / formatters
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'rhysd/vim-clang-format'
+    Plug 'vim-syntastic/syntastic'
 
-   " Git
-   Plug 'airblade/vim-gitgutter'
+    " Syntax highlighting and other features for React
+    Plug 'mxw/vim-jsx'
+    Plug 'pangloss/vim-javascript'
+
+    " Git
+    Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " Functions
@@ -88,6 +92,14 @@ colorscheme onedark
 
 " Run files and keybinds
 nnoremap <C-b> :call RunCode()<CR>
+nnoremap <C-s> :w <CR>
+nnoremap <C-q> :q <CR>
+nnoremap <C-r> :w<CR>:source $MYVIMRC<CR> 
+
+" Splitting
+nnoremap <M-0> :only<CR>
+nnoremap <M-v> :vsplit<CR>
+nnoremap <M-h> :split<CR>
 
 " Keybinds
 nnoremap <C-a> ggVG
@@ -106,7 +118,8 @@ nnoremap <F2> :NERDTreeToggle<CR>
 nnoremap <F6> :call ToggleTerminal(12)<CR>
 
 " Tabs
-nnoremap <silent> <S-t> :tabnew<CR>
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-w> :tabclose<CR>
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
