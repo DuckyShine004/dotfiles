@@ -26,6 +26,12 @@ set autoindent
 set shiftwidth=4
 set tabstop=4
 
+" Text and fonts
+filetype plugin indent on
+syntax on
+set termguicolors
+set background=dark
+
 call plug#begin('~/.local/share/nvim/plugged')
     " Appearance
     Plug 'vim-airline/vim-airline'
@@ -38,6 +44,13 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'glepnir/zephyr-nvim'
     Plug 'bluz71/vim-moonfly-colors', { 'as': 'moonfly' }
     Plug 'johnfrankmorgan/whitespace.nvim'
+    Plug 'folke/which-key.nvim'
+    Plug 'goolord/alpha-nvim'
+    Plug 'folke/zen-mode.nvim'
+    Plug 'folke/twilight.nvim'
+    Plug 'folke/tokyonight.nvim'
+    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+    Plug 'dasupradyumna/midnight.nvim'
 
     " LaTeX
     Plug 'lervag/vimtex'
@@ -45,6 +58,14 @@ call plug#begin('~/.local/share/nvim/plugged')
     " Commenting
     Plug 'numToStr/Comment.nvim'
     Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-surround'
+
+    " Notifications
+    Plug 'rcarriga/nvim-notify'
+
+    " Managers
+    Plug 'xolox/vim-colorscheme-switcher'
+    Plug 'xolox/vim-misc'
 
     " Utilities
     Plug 'nvim-tree/nvim-tree.lua'
@@ -66,19 +87,20 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'heavenshell/vim-jsdoc', {'do': 'make install', 'for': ['javascript', 'javascript.jsx','typescript']}
     Plug 'folke/trouble.nvim'
     Plug 'neovim/nvim-lspconfig'
-    Plug 'williamboman/mason.nvim'  
+    Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
-    Plug 'hrsh7th/nvim-cmp'        
-    Plug 'hrsh7th/cmp-nvim-lsp'    
-    Plug 'hrsh7th/cmp-buffer'       
-    Plug 'hrsh7th/cmp-path'      
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'mfussenegger/nvim-dap'
     Plug 'jay-babu/mason-nvim-dap.nvim'
     Plug 'rcarriga/nvim-dap-ui'
-    Plug 'onsails/lspkind-nvim'           
-    Plug 'L3MON4D3/LuaSnip'               
+    Plug 'onsails/lspkind-nvim'
+    Plug 'L3MON4D3/LuaSnip'
     Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'windwp/nvim-autopairs'
 
     " Syntax highlighting and other features for React
     Plug 'mxw/vim-jsx'
@@ -102,13 +124,12 @@ if filereadable($HOME.'/.nvim_last_color_scheme')
     execute 'colorscheme ' . g:colorscheme
 endif
 
-
 " Functions
 let g:term_buf = 0
 let g:term_win = 0
 
 " Colorschemes
-let g:colorschemes = ['gruvbox', 'pop-punk', 'zephyr', 'moonfly']
+let g:colorschemes = ['gruvbox', 'pop-punk', 'zephyr', 'moonfly', 'midnight', 'tokyonight-night', 'tokyonight-moon', 'catppuccin-mocha']
 let g:current_scheme_index = 0
 
 function! ToggleTerminal(height)
@@ -161,7 +182,7 @@ function! RunDebug()
 endfunction
 
 " Closing tab and buffers
-function! CloseCurrentTabAndBuffer() 
+function! CloseCurrentTabAndBuffer()
     let currentBuffer = bufnr('%')
     execute 'confirm bdelete ' . currentBuffer
 
@@ -176,6 +197,7 @@ function! CycleColorScheme()
     let g:colorscheme = g:colorschemes[g:current_scheme_index]
     echo 'Applying scheme: ' . g:colorscheme
     call execute('colorscheme ' . g:colorscheme)
+    call SaveCurrentColorScheme()
 endfunction
 
 " Save colorscheme on exit
@@ -202,12 +224,6 @@ function! ChangeTabSize()
         echo "Invalid choice"
     endif
 endfunction
-
-" Text and fonts
-filetype plugin indent on
-syntax on
-set termguicolors
-set background=dark
 
 " Run files and keybinds
 nnoremap <C-b> :call RunCode()<CR>
@@ -295,7 +311,10 @@ let g:pydocstring_doq_path = 'doq'
 let g:pydocstring_formatter = 'google'
 
 " Onedark Theme
-let g:onedark_termcolors=256 
+let g:onedark_termcolors=256
+
+" Colorschemes
+let g:colorscheme_switcher_exclude = ['default', 'lunaperche', 'morning', 'pablo', 'industry', 'koehler', 'peachpuff', 'quiet', 'murphy', 'ron', 'shine', 'slate', 'torte', 'habamax', 'zellner', 'blue', 'darkblue', 'delek', 'desert', 'eldar', 'elflord', 'evening']
 
 " Airline
 set showtabline=2
