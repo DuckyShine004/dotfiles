@@ -1,0 +1,86 @@
+{
+  "suggest.noselect": false,
+  "suggest.acceptSuggestionOnEnter": "on",
+  "coc.preferences.autoPairs": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "json",
+    "javascriptreact",
+    "typescriptreact",
+    "html",
+    "css",
+    "yaml",
+    "cpp",
+    "python"
+  ],
+  "json.format.enable": true,
+  "prettier.enable": true,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    },
+    "pyright": {
+      "command": "pyright-langserver",
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "python"
+      ],
+      "settings": {
+        "python.analysis.typeCheckingMode": "basic",
+        "python.analysis.diagnosticMode": "workspace",
+        "python.formatting.provider": "black",
+        "python.formatting.blackPath": "~/.local/bin/black"
+      }
+    },
+    "tsserver": {
+      "module": "typescript-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ],
+      "initializationOptions": {
+        "preferences": {
+          "importModuleSpecifier": "relative"
+        }
+      }
+    },
+    "eslint": {
+      "module": "eslint-lsp",
+      "args": [
+          "--stdio"
+      ],
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ]
+    }
+  },
+  "snippets.ultisnips.pythonPrompt": false
+}
