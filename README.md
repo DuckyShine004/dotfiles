@@ -2,7 +2,12 @@
 My configuration for dotfiles. I use a combination of both the `vim` and `lua` scripting languages to configure my `neovim` editor. I usei the `oh-my-zsh` shell for its speed and efficiency, and I use `tmux` to enchance my workflow experience. I hope you enjoy my custom dotfile configurations!
 
 ## Getting Started
-To ensure a seamless experience moving forward, please go through each of the subsections in a chronological manner. Here are some snapshots for the neovim configuration:
+To ensure a seamless experience moving forward, please go through each of the subsections in a chronological manner. Here are some snapshots for my neovim configuration:
+<div align="center">
+  <img src="https://raw.githubusercontent.com/DuckyShine004/dotfiles/main/snapshots/dashboard.png" alt="dashboard" width="100%" />
+  <img src="https://raw.githubusercontent.com/DuckyShine004/dotfiles/main/snapshots/theme.png" alt="theme" width="100%" />
+  <img src="https://raw.githubusercontent.com/DuckyShine004/dotfiles/main/snapshots/floaterm.png" alt="floaterm" width="100%" />
+</div>
 
 
 ### Prerequisites
