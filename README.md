@@ -1,8 +1,9 @@
 # dotfiles 
-My configuration for dotfiles. I use a combination of both the `vim` and `lua` scripting languages to configure my `neovim` editor. 
+My configuration for dotfiles. I use a combination of both the `vim` and `lua` scripting languages to configure my `neovim` editor. I usei the `oh-my-zsh` shell for its speed and efficiency, and I use `tmux` to enchance my workflow experience. I hope you enjoy my custom dotfile configurations!
 
 ## Getting Started
-To ensure a seamless experience moving forward, please go through each of the subsections in a chronological manner.
+To ensure a seamless experience moving forward, please go through each of the subsections in a chronological manner. Here are some snapshots for the neovim configuration:
+
 
 ### Prerequisites
 I use the `vim-plug` plugin manager to manage my plugins. To install the `vim-plug` plugin manager, do the following:
@@ -21,17 +22,6 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 
 If the commands do not work, go to <https://github.com/junegunn/vim-plug> for extra guidance. You also need to install `Node` on your system. You can find the download links on the [nodejs](https://nodejs.org/en/download) website, from there, download any of the listed `stable` versions.
 
-### Conqueror of Completion
-You must manually change these fields in the `coc-settings.json` file, to ensure that everything is working:
-```json
-{
-    "clangd.path": "change/to/your/clangd/path",
-    "clangd.arguments": [
-        "-I/usr/include/c++/your-cpp-version",
-        "-I/usr/include/x86_64-linux-gnu/c++/your-cpp-version"
-    ]
-}
-```
 ## Contribution
 
 Any contributions you make are **greatly appreciated**.
