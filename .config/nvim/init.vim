@@ -51,6 +51,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'folke/tokyonight.nvim'
     Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     Plug 'dasupradyumna/midnight.nvim'
+    Plug 'norcalli/nvim-colorizer.lua'
 
     " LaTeX
     Plug 'lervag/vimtex'
@@ -66,6 +67,10 @@ call plug#begin('~/.local/share/nvim/plugged')
     " Managers
     Plug 'xolox/vim-colorscheme-switcher'
     Plug 'xolox/vim-misc'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-ui-select.nvim'
+    Plug 'stevearc/dressing.nvim'
 
     " Utilities
     Plug 'nvim-tree/nvim-tree.lua'
@@ -78,6 +83,10 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'dstein64/nvim-scrollview'
     Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+    Plug 'cdelledonne/vim-cmake'
+    Plug 'simrat39/symbols-outline.nvim'
+    Plug 'liuchengxu/vista.vim'
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     " Linter / formatters
     Plug 'octol/vim-cpp-enhanced-highlight'
@@ -101,6 +110,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'L3MON4D3/LuaSnip'
     Plug 'saadparwaiz1/cmp_luasnip'
     Plug 'windwp/nvim-autopairs'
+    Plug 'hrsh7th/cmp-emoji'
+    Plug 'tikhomirov/vim-glsl'
+    Plug 'danymat/neogen'
 
     " Syntax highlighting and other features for React
     Plug 'mxw/vim-jsx'
@@ -161,7 +173,6 @@ function! RunCode()
         let executable = expand('%:r') . '.exe'
         execute 'w'
         call system('gnome-terminal -- bash -c "g++ -Wall -Wextra -Wshadow -D_GLIBCXX_ASSERTIONS -fmax-errors=2 -o ' . shellescape(executable) . ' ' . shellescape(@%) . ' && ' . shellescape(executable) . '; echo Press ENTER to exit; read line"')
-        " call system('gnome-terminal -- bash -c "g++ ' . shellescape(@%) . ' -o ' . shellescape(executable) . ' && ./' . shellescape(executable) . '; echo Press ENTER to exit; read line"')
     elseif &filetype == 'tex'
         execute 'w'
         silent! VimtexCompile
@@ -170,12 +181,23 @@ function! RunCode()
     endif
 endfunction
 
-" Debugging command
+" Debug code command
 function! RunDebug()
     if &filetype == 'cpp'
-        let executable = expand('%:r') . '.exe'
+        " Save the current file
         execute 'w'
-        call system('gnome-terminal -- bash -c "g++ -Wall -Wextra -Wshadow -D_GLIBCXX_ASSERTIONS -DDEBUG -ggdb3 -fmax-errors=2 -o ' . shellescape(executable) . ' ' . shellescape(@%) . ' && ' . shellescape(executable) . '; echo Press ENTER to exit; read line"')
+
+        " Define the executable name with .exe extension
+        let executable = expand('%:r') . '.exe'
+
+        " Compile and run command
+        let compile_and_run_cmd = 'g++ -Wall -Wextra -Wshadow -D_GLIBCXX_ASSERTIONS -DDEBUG -ggdb3 -fmax-errors=2 -o ' . shellescape(executable) . ' ' . shellescape(@%) . ' && ' . shellescape(executable) . '; echo Press ENTER to exit; read'
+
+        " Construct the Floaterm command
+        let floaterm_command = 'FloatermNew --name=Debug --title=Debug ' . compile_and_run_cmd
+
+        " Execute the Floaterm command
+        execute floaterm_command
     else
         echo "No debug command for this filetype."
     endif
@@ -191,14 +213,29 @@ function! CloseCurrentTabAndBuffer()
     endif
 endfunction
 
-" Change colorscheme
-function! CycleColorScheme()
+" Change to the next colorscheme
+function! CycleNextColorScheme()
     let g:current_scheme_index = (g:current_scheme_index + 1) % len(g:colorschemes)
     let g:colorscheme = g:colorschemes[g:current_scheme_index]
-    echo 'Applying scheme: ' . g:colorscheme
-    call execute('colorscheme ' . g:colorscheme)
+    call luaeval("require('notify')(_A[1], 'info')", ['Applying scheme: ' . g:colorscheme])
+    execute 'colorscheme ' . g:colorscheme
     call SaveCurrentColorScheme()
 endfunction
+
+" Change to the previous colorscheme
+function! CyclePreviousColorScheme()
+    if g:current_scheme_index == 0
+        let g:current_scheme_index = len(g:colorschemes) - 1
+    else
+        let g:current_scheme_index = g:current_scheme_index - 1
+    endif
+    let g:colorscheme = g:colorschemes[g:current_scheme_index]
+    call luaeval("require('notify')(_A[1], 'info')", ['Applying scheme: ' . g:colorscheme])
+    execute 'colorscheme ' . g:colorscheme
+    call SaveCurrentColorScheme()
+endfunction
+
+
 
 " Save colorscheme on exit
 function! SaveCurrentColorScheme()
@@ -264,17 +301,20 @@ nnoremap <leader>g :Telescope live_grep<CR>
 nnoremap <leader>b :Telescope buffers<CR>
 nnoremap <leader>h :Telescope help_tags<CR>
 nnoremap <leader>gc :Telescope git_commits<CR>
-nnoremap <leader>cb :Telescope current_buffer_fuzzy_find<CR>
+nnoremap <leader>cb :Telescope current_buffer_fuzzy_find sorting_strategy=ascending ignore_case=false<CR>
 
 " Debugging
 nnoremap <silent> <leader>db :lua require'dap'.toggle_breakpoint()<CR>
 
 " Utilities
 nnoremap <F2> :NvimTreeToggle<CR>
-nnoremap <F3> :call CycleColorScheme()<CR>
+nnoremap <F3> :call CyclePreviousColorScheme()<CR>
+nnoremap <F4> :call CycleNextColorScheme()<CR>
 nnoremap <F6> :call ToggleTerminal(12)<CR>
 nnoremap <leader>pds :Pydocstring<CR>
 nnoremap <leader>jds :JsDoc<CR>
+nnoremap <leader>ng :lua require('neogen').generate()<CR>
+" nnoremap <silent><leader>a :<C-u>CocAction('doCodeAction')<CR>
 
 " Tabs
 nnoremap <C-t> :tabnew<CR>
@@ -341,9 +381,28 @@ let g:airline#extensions#tabline#tabs_label = 'Tabs'
 " Gitgutter
 let g:gitgutter_async = 1
 let g:gitgutter_realtime = 1
+let g:gitgutter_sign_added = '●'
+let g:gitgutter_sign_modified = '●'
+let g:gitgutter_sign_removed = '●'
+let g:gitgutter_sign_removed_first_line = '‾'
+let g:gitgutter_sign_removed_above_and_below = '↕'
+
+highlight GitGutterAdd    guifg=#a8e7bf ctermfg=2 " green
+highlight GitGutterChange guifg=#fffaa0 ctermfg=3 " yellow
+highlight GitGutterDelete guifg=#faa0a0 ctermfg=1 " red
+
+" Tags
+let g:vista_ctags_executable = '/usr/bin/ctags'
 
 " Manual commands
 command! ChangeTabSize call ChangeTabSize()
+
+" Symbols
+augroup FiletypeSpecificBindings
+    autocmd!
+    autocmd FileType cpp nnoremap <buffer> <leader>o :Vista!!<CR>
+    autocmd FileType python,typescript,lua nnoremap <buffer> <leader>o :SymbolsOutline<CR>
+augroup END
 
 " Nvim tree
 autocmd VimEnter * NvimTreeOpen
