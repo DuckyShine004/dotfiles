@@ -1,4 +1,3 @@
-require('neogen').setup {
-    enabled = true,  -- Enable Neogen
-}
-
+require("neogen").setup({
+	enabled = true, -- Enable Neogen
+})

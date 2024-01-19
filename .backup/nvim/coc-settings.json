@@ -1,7 +1,7 @@
 // {
+//   "suggest.autoTrigger": "none",
 //   "suggest.noselect": false,
 //   "suggest.acceptSuggestionOnEnter": "on",
-//   "coc.preferences.autoPairs": true,
 //   "coc.preferences.formatOnSaveFiletypes": [
 //     "javascript",
 //     "typescript",
@@ -11,11 +11,10 @@
 //     "html",
 //     "css",
 //     "yaml",
-//     "cpp",
 //     "python"
 //   ],
-//   "json.format.enable": true,
-//   "prettier.enable": true,
+// //   "json.format.enable": true,
+// //   "prettier.enable": true,
 //   "languageserver": {
 //     "ccls": {
 //       "command": "ccls",
@@ -51,7 +50,7 @@
 //         "python.formatting.provider": "black",
 //         "python.formatting.blackPath": "~/.local/bin/black"
 //       }
-//     },
+//     }
 //     "tsserver": {
 //       "module": "typescript-language-server",
 //       "args": [
@@ -83,4 +82,5 @@
 //     }
 //   },
 //   "snippets.ultisnips.pythonPrompt": false
+  // }
 // }
