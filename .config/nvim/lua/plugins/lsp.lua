@@ -16,6 +16,7 @@ lspconfig.tsserver.setup({ on_attach = on_attach })
 lspconfig.lua_ls.setup({ on_attach = on_attach })
 lspconfig.cmake.setup({ on_attach = on_attach })
 lspconfig.texlab.setup({ on_attach = on_attach })
+lspconfig.omnisharp.setup({ on_attach = on_attach })
 
 lspconfig.ccls.setup({
 	on_attach = on_attach,

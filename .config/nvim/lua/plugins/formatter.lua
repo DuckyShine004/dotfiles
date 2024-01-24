@@ -1,5 +1,23 @@
 require("formatter").setup({
 	filetype = {
+		python = {
+			function()
+				return {
+					exe = "black",
+					args = { "-" },
+					stdin = true,
+				}
+			end,
+		},
+		cs = {
+			function()
+				return {
+					exe = "dotnet-format",
+					args = { "--include", vim.api.nvim_buf_get_name(0) },
+					stdin = false,
+				}
+			end,
+		},
 		tex = {
 			function()
 				return {

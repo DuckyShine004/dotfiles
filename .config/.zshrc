@@ -18,7 +18,9 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 alias template='~/scripts/create_cpp_template.sh'
-
+# alias nvim-config='source ~/scripts/nvim-config-select.sh'
+alias nvim-primary='nvim -u ~/.config/nvim/init.vim'
+alias nvim-minimal='nvim -u ~/.config/nvim/init_custom.vim'
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -147,5 +149,11 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:/home/duckyshine04/Documents/idea-IU-233.11799.300/bin"
 export PATH="/usr/bin/mongod:$PATH"
 export PATH=$PATH:/home/duckyshine04/Documents/programs/cf_v1.0.0_linux_64
+export PATH=/usr/bin:$PATH
+export PATH=/usr/bin/llvm-config-18:$PATH
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+export PATH="/usr/local/texlive/2023/bin/x86_64-linux:$PATH"
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
 

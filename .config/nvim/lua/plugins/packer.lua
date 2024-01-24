@@ -69,4 +69,10 @@ return require("packer").startup(function()
 	-- Utilities
 	use("xiyaowong/transparent.nvim")
 	use("voldikss/vim-floaterm")
+
+	-- Markdown
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && yarn install", -- Adapt the 'do' post-install command to Packer's 'run'
+	})
 end)
