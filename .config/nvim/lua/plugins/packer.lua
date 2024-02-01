@@ -52,10 +52,16 @@ return require("packer").startup(function()
 	use("hrsh7th/cmp-emoji")
 	use("windwp/nvim-autopairs")
 	use("tpope/vim-surround")
+	use("mattn/emmet-vim")
+	use("windwp/nvim-ts-autotag")
 
 	-- Formatters
 	use("rhysd/vim-clang-format")
 	use("mhartington/formatter.nvim")
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
 
 	-- Snippets
 	use("L3MON4D3/LuaSnip")
@@ -69,6 +75,7 @@ return require("packer").startup(function()
 	-- Utilities
 	use("xiyaowong/transparent.nvim")
 	use("voldikss/vim-floaterm")
+	use("folke/zen-mode.nvim")
 
 	-- Markdown
 	use({

@@ -1,7 +1,16 @@
 local lspconfig = require("lspconfig")
 
 local function on_attach(client, bufnr)
-	client.server_capabilities.semanticTokensProvider = nil
+	if client.server_capabilities.semanticTokensProvider then
+		-- Disable semantic tokens by setting the provider to nil
+		client.server_capabilities.semanticTokensProvider = nil
+	end
+
+	if client.name == "tsserver" then
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentRangeFormattingProvider = false
+	end
+
 	vim.api.nvim_buf_set_keymap(
 		bufnr,
 		"n",
@@ -17,6 +26,7 @@ lspconfig.lua_ls.setup({ on_attach = on_attach })
 lspconfig.cmake.setup({ on_attach = on_attach })
 lspconfig.texlab.setup({ on_attach = on_attach })
 lspconfig.omnisharp.setup({ on_attach = on_attach })
+lspconfig.jdtls.setup({ on_attach = on_attach })
 
 lspconfig.ccls.setup({
 	on_attach = on_attach,

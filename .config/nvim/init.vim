@@ -18,6 +18,7 @@ set guicursor=i:block
 " CMD
 set showcmd
 set showmode
+set noswapfile
 
 " Tabs size
 set expandtab
@@ -160,18 +161,18 @@ augroup TelescopeTransparent
     autocmd VimEnter * highlight TelescopeBorder guibg=NONE
 augroup END
 
-" Format files on save
+" Formatting after save
 augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost * FormatWrite
+    autocmd!
+    autocmd BufWritePost * FormatWrite
 augroup END
 
 " Automatic filetype-specific configurations
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascriptreact setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType typescriptreact setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType javascriptreact setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType typescript setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType typescriptreact setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType json setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4 smarttab expandtab
