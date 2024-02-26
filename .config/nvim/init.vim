@@ -101,8 +101,8 @@ function! RunDebug()
         " Save the current file
         execute 'w'
 
-        " Define the executable name with .exe extension
-        let executable = expand('%:r') . '.exe'
+        " Define the executable name without the path, just the filename with .exe extension
+        let executable = expand('%:p:h') . '/' . expand('%:t:r') . '.exe'
 
         " Compile and run command
         let compile_and_run_cmd = 'g++ -Wall -Wextra -Wshadow -D_GLIBCXX_ASSERTIONS -DDEBUG -ggdb3 -fmax-errors=2 -o ' . shellescape(executable) . ' ' . shellescape(@%) . ' && ' . shellescape(executable) . '; echo Press ENTER to exit; read'
@@ -150,6 +150,14 @@ nnoremap <leader>ng <cmd>lua require('neogen').generate()<CR>
 " Commentary
 nnoremap <leader>/ :Commentary<CR>
 vnoremap <leader>/ :Commentary<CR>
+
+" Go-to preview plugin
+nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
+nnoremap gpt <cmd>lua require('goto-preview').goto_preview_type_definition()<CR>
+nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
+nnoremap gpD <cmd>lua require('goto-preview').goto_preview_declaration()<CR>
+nnoremap gpc <cmd>lua require('goto-preview').close_all_win()<CR>
+nnoremap gpr <cmd>lua require('goto-preview').goto_preview_references()<CR>
 
 " Nvim tree
 autocmd VimEnter * NvimTreeOpen

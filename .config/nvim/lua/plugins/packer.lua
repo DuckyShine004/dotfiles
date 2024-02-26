@@ -21,6 +21,20 @@ return require("packer").startup(function()
 		end,
 	})
 
+	-- use({
+	-- 	"scottmckendry/cyberdream.nvim",
+	-- 	config = function()
+	-- 		require("cyberdream").setup({
+	-- 			-- Recommended - see "Configuring" below for more config options
+	-- 			transparent = true,
+	-- 			italic_comments = true,
+	-- 			hide_fillchars = true,
+	-- 			borderless_telescope = true,
+	-- 		})
+	-- 		vim.cmd("colorscheme cyberdream") -- set the colorscheme
+	-- 	end,
+	-- })
+
 	-- Treesitter
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 	use("nvim-treesitter/playground")
@@ -41,6 +55,12 @@ return require("packer").startup(function()
 	use("williamboman/mason-lspconfig.nvim")
 	use("neovim/nvim-lspconfig")
 	use("onsails/lspkind-nvim")
+	use({
+		"rmagatti/goto-preview",
+		config = function()
+			require("goto-preview").setup({})
+		end,
+	})
 
 	-- Autocompletion
 	use("hrsh7th/nvim-cmp")
@@ -76,10 +96,11 @@ return require("packer").startup(function()
 	use("xiyaowong/transparent.nvim")
 	use("voldikss/vim-floaterm")
 	use("folke/zen-mode.nvim")
+	use("folke/trouble.nvim")
 
 	-- Markdown
 	use({
 		"iamcco/markdown-preview.nvim",
-		run = "cd app && yarn install", -- Adapt the 'do' post-install command to Packer's 'run'
+		run = "cd app && npm install",
 	})
 end)
