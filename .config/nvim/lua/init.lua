@@ -1,6 +1,8 @@
 -- Settings
+vim.opt.fillchars = { eob = " " }
 
--- Colorschemes
+-- Themes
+require("themes/rose")
 
 -- Plugins
 require("plugins/packer")
@@ -15,9 +17,12 @@ require("plugins/formatter")
 require("plugins/emmet")
 require("plugins/tree")
 require("plugins/telescope")
+require("plugins/lualine")
+require("plugins/bufferline")
 require("plugins/pair")
 require("plugins/docs")
 require("plugins/transparent")
+require("plugins/indent")
 
 -- Utilities
 require("utilities/animate")

@@ -16,9 +16,6 @@ return require("packer").startup(function()
 	use({
 		"rose-pine/neovim",
 		as = "rose-pine",
-		config = function()
-			vim.cmd("colorscheme rose-pine")
-		end,
 	})
 
 	-- use({
@@ -97,6 +94,16 @@ return require("packer").startup(function()
 	use("voldikss/vim-floaterm")
 	use("folke/zen-mode.nvim")
 	use("folke/trouble.nvim")
+
+	-- Statuslines
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+	})
+	use({ "akinsho/bufferline.nvim", event = "VimEnter", tag = "*", requires = "nvim-tree/nvim-web-devicons" })
+
+	-- Indent
+	use("lukas-reineke/indent-blankline.nvim")
 
 	-- Markdown
 	use({
