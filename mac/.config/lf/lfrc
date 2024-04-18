@@ -1,0 +1,4 @@
+cmd img-preview %p{
+    chafa "$f"
+}
+set previewer img-preview
