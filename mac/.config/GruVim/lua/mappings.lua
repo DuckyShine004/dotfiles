@@ -15,6 +15,7 @@ map("v", "<leader>[", ">gv")
 map("v", "<leader>]", "<gv")
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
+map({ "n", "v" }, "<leader>/", ":Commentary<cr>", { silent = true })
 
 -- Window
 map("n", "<leader>hs", "<cmd>split<cr>")
@@ -42,5 +43,12 @@ map(
   { desc = "Telescope Find all files" }
 )
 
+-- Float terminal
+map("n", "<leader>tf", ":FloatermToggle<cr>")
+map("n", "<leader>th", ":ToggleTerm<cr>")
+
 -- Trouble
 map("n", "<leader>ot", ":TroubleToggle<cr>", { silent = true })
+
+-- Transparency
+map("n", "tt", ":TransparentToggle<cr>", { silent = true })

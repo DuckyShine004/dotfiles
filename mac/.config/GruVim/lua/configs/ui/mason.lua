@@ -1,5 +1,5 @@
 local options = {
-  ensure_installed = { "lua-language-server", "stylua" }, -- not an option from mason.nvim
+  ensure_installed = { "lua-language-server", "stylua" },
 
   PATH = "skip",
 
@@ -7,7 +7,7 @@ local options = {
     icons = {
       package_pending = " ",
       package_installed = "󰄳 ",
-      package_uninstalled = " 󰚌",
+      package_uninstalled = " ",
     },
 
     keymaps = {

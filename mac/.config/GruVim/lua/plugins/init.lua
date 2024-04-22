@@ -8,10 +8,35 @@ return {
   },
 
   {
+    "goolord/alpha-nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require "configs.ui.dashboard.alpha"
+    end,
+  },
+
+  {
     "folke/trouble.nvim",
     opts = function()
       return require "configs.ui.trouble"
     end,
+  },
+
+  {
+    "voldikss/vim-floaterm",
+  },
+
+  { "akinsho/toggleterm.nvim", version = "*", config = true },
+
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
   },
 
   {
@@ -43,31 +68,41 @@ return {
     end,
   },
 
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   priority = 1000,
-  --   config = function()
-  --     require "themes.catppuccin"
-  --   end,
-  -- },
-
   {
     "ellisonleao/gruvbox.nvim",
+    -- event = "UiEnter",
     priority = 1000,
     name = "gruvbox",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require "themes.gruvbox"
     end,
   },
 
+  -- Could not get this plugin to work
+  -- {
+  --   "rebelot/heirline.nvim",
+  --   opts = function()
+  --     return require "configs.ui.statuslines.heirline"
+  --   end,
+  --   config = function(_, opts)
+  --     require("heirline").setup(opts)
+  --   end,
+  -- },
   {
-    "rebelot/heirline.nvim",
-    opts = function()
-      return require "configs.ui.statuslines.heirline"
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
     end,
-    config = function(_, opts)
-      require("heirline").setup(opts)
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "UiEnter",
+    priority = 999,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require "configs.ui.statuslines.lualine"
     end,
   },
 
@@ -154,24 +189,11 @@ return {
   },
 
   {
-    "numToStr/Comment.nvim",
-    keys = {
-      { "gcc", mode = "n",          desc = "Comment toggle current line" },
-      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n",          desc = "Comment toggle current block" },
-      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
-    },
-    config = function(_, opts)
-      require("Comment").setup(opts)
-    end,
+    "tpope/vim-commentary",
   },
 
   {
     "williamboman/mason.nvim",
-    event = "UiEnter",
-    priority = 991,
     opts = function()
       return require "configs.ui.mason"
     end,

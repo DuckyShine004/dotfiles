@@ -7,7 +7,7 @@ local on_init = function(client, _)
   end
 end
 
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local function opts(desc)
     return { buffer = bufnr, desc = "LSP " .. desc }
   end
@@ -15,7 +15,7 @@ local on_attach = function(client, bufnr)
   map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
   map("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
   map("n", "K", vim.lsp.buf.hover, opts "hover information")
-  map("n", "gi", vim.lsp.buf.implementation, opts "Go to implementation")
+  map("n", "g", vim.lsp.buf.implementation, opts "Go to implementation")
   map("n", "<leader>sh", vim.lsp.buf.signature_help, opts "Show signature help")
   map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
   map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
@@ -25,9 +25,8 @@ local on_attach = function(client, bufnr)
   end, opts "List workspace folders")
 
   map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
-
-  map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
   map("n", "gr", vim.lsp.buf.references, opts "Show references")
+  map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -57,13 +56,6 @@ lspconfig.pyright.setup {
   filetypes = { "python" },
 }
 
-lspconfig.pylint.setup {
-  on_init = on_init,
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "python" },
-}
-
 lspconfig.lua_ls.setup {
   on_init = on_init,
   on_attach = on_attach,
@@ -87,11 +79,21 @@ lspconfig.lua_ls.setup {
   },
 }
 
+lspconfig.clangd.setup {
+  on_init = on_init,
+  on_attach = function(client, bufnr)
+    client.server_capabilities.signatureHelpProvider = false
+    on_attach(client, bufnr)
+  end,
+  capabilities = capabilities,
+  filetypes = { "cpp", "c++" },
+}
+
 -- Set diagnostic symbols
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 vim.diagnostic.config {
   signs = {
@@ -100,7 +102,7 @@ vim.diagnostic.config {
       { name = "DiagnosticSignError", text = "" },
       { name = "DiagnosticSignWarn", text = "" },
       { name = "DiagnosticSignInfo", text = "" },
-      { name = "DiagnosticSignHint", text = "" },
+      { name = "DiagnosticSignHint", text = "" },
     },
   },
 }

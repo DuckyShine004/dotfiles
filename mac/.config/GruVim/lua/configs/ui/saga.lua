@@ -1,3 +1,8 @@
 local saga = require "lspsaga"
+local opts = {
+  ui = {
+    code_action = "",
+  },
+}
 
-saga.setup()
+saga.setup(opts)
