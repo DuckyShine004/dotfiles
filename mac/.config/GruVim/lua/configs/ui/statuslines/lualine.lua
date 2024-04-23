@@ -16,11 +16,7 @@ local function get_filename()
     return "zsh"
   end
 
-  if filename == "" or string.find(filename, "NvimTree") then
-    return ""
-  end
-
-  return vim.fn.expand "%:t"
+  return filename
 end
 
 local function get_root()
@@ -35,15 +31,20 @@ local function get_root()
 end
 
 local function get_filename_icon()
-  local file = get_filename()
+  local filename = get_filename()
 
-  if file == "" then
+  if filename == "" or filename == nil then
     return "", ""
   end
 
   local extension = vim.fn.expand "%:e"
-  local icon, icon_color = require("nvim-web-devicons").get_icon_color(file, extension)
-  return icon, icon_color
+  local icon, icon_color = require("nvim-web-devicons").get_icon_color(filename, extension)
+
+  if not icon == nil then
+    return icon, icon_color
+  end
+
+  return "", "#ebdbb2"
 end
 
 local mode_colors = {

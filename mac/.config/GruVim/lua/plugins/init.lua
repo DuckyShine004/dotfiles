@@ -61,6 +61,21 @@ return {
   },
 
   {
+    "tpope/vim-dadbod",
+  },
+
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    -- init = function()
+    --   return require "configs.ui.dadbodui"
+    -- end,
+  },
+
+  {
+    "kristijanhusak/vim-dadbod-completion",
+  },
+
+  {
     "stevearc/conform.nvim",
     opts = require "configs.lsp.conform",
     config = function(_, opts)

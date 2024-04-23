@@ -115,6 +115,7 @@ local options = {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "nvim_lua" },
+    { name = "vim-dadbod-completion" },
     { name = "path" },
   },
 }
