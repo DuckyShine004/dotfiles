@@ -1,0 +1,1 @@
+/Users/duckyshine04/Documents/projects/competitive-programming/codeforces-division-solutions/template.cpp

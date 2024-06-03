@@ -4,67 +4,76 @@ ICON_PADDING_RIGHT=5
 
 case $INFO in
 "Arc")
-    ICON_PADDING_RIGHT=5
-    ICON=󰞍
-    ;;
+	ICON_PADDING_RIGHT=5
+	ICON=󰞍
+	;;
 "Code")
-    ICON_PADDING_RIGHT=4
-    ICON=󰨞
-    ;;
+	ICON_PADDING_RIGHT=4
+	ICON=󰨞
+	;;
 "Calendar")
-    ICON_PADDING_RIGHT=3
-    ICON=
-    ;;
+	ICON_PADDING_RIGHT=3
+	ICON=
+	;;
 "Discord")
-    ICON=󰙯
-    ;;
+	ICON=󰙯
+	;;
 "FaceTime")
-    ICON_PADDING_RIGHT=5
-    ICON=
-    ;;
+	ICON_PADDING_RIGHT=5
+	ICON=
+	;;
 "Finder")
-    ICON=
-    ;;
+	ICON=󰀶
+	;;
 "Google Chrome")
-    ICON_PADDING_RIGHT=7
-    ICON=
-    ;;
+	ICON_PADDING_RIGHT=7
+	ICON=
+	;;
 "IINA")
-    ICON_PADDING_RIGHT=4
-    ICON=󰕼
-    ;;
+	ICON_PADDING_RIGHT=4
+	ICON=󰕼
+	;;
 "kitty")
-    ICON=󰄛
-    ;;
+	ICON=󰄛
+	;;
 "Messages")
-    ICON=󰍦
-    ;;
+	ICON=󰍦
+	;;
 "Notion")
-    ICON_PADDING_RIGHT=6
-    ICON=󰈄
-    ;;
+	ICON_PADDING_RIGHT=6
+	ICON=󰈄
+	;;
 "Preview")
-    ICON_PADDING_RIGHT=3
-    ICON=
-    ;;
+	ICON_PADDING_RIGHT=3
+	ICON=
+	;;
+"Font Book")
+	ICON=󰘝
+	;;
 "PS Remote Play")
-    ICON_PADDING_RIGHT=3
-    ICON=
-    ;;
+	ICON_PADDING_RIGHT=3
+	ICON=
+	;;
 "Spotify")
-    ICON=
-    ;;
+	ICON=
+	;;
+"Firefox")
+	ICON=󰈹
+	;;
 "TextEdit")
-    ICON_PADDING_RIGHT=4
-    ICON=
-    ;;
+	ICON_PADDING_RIGHT=4
+	ICON=
+	;;
+"System Settings")
+	ICON=󰣖
+	;;
 "Transmission")
-    ICON_PADDING_RIGHT=3
-    ICON=󰶘
-    ;;
+	ICON_PADDING_RIGHT=3
+	ICON=󰶘
+	;;
 *)
-    ICON=﯂
-    ;;
+	ICON=﯂
+	;;
 esac
 
 sketchybar --set $NAME icon=$ICON icon.padding_right=$ICON_PADDING_RIGHT

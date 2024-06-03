@@ -1,4 +1,6 @@
-local cmd = require "functions.cmd"
+local cmd_fn = require "functions.cmd_fn"
+local code_fn = require "functions.code_fn"
+
 local map = vim.keymap.set
 
 -- General
@@ -6,13 +8,13 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr>")
 map({ "n", "i", "v" }, "<C-q>", "<cmd>q<cr>")
-map("n", "<leader>ls", cmd.syncAllPlugins, { silent = true })
-map("n", "<leader>la", cmd.loadAllPlugins, { silent = true })
+map("n", "<leader>ls", cmd_fn.syncAllPlugins, { silent = true })
+map("n", "<leader>la", cmd_fn.loadAllPlugins, { silent = true })
 
 -- Text
 map("n", "<C-a>", "ggVG")
-map("v", "<leader>[", ">gv")
-map("v", "<leader>]", "<gv")
+map("v", "[", ">gv")
+map("v", "]", "<gv")
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 map({ "n", "v" }, "<leader>/", ":Commentary<cr>", { silent = true })
@@ -45,7 +47,8 @@ map(
 
 -- Float terminal
 map("n", "<leader>tf", ":FloatermToggle<cr>")
-map("n", "<leader>th", ":ToggleTerm<cr>")
+map("n", "<leader>th", ":ToggleTerm size=10 direction=horizontal<cr>")
+map("n", "<C-b>", code_fn.runCode, { silent = false })
 
 -- Trouble
 map("n", "<leader>ot", ":TroubleToggle<cr>", { silent = true })

@@ -33,7 +33,6 @@
 #yabai -m config right_padding                08
 #yabai -m config window_gap                   08
 
-
 # default layout (can be bsp, stack or float)
 yabai -m config layout bsp
 
@@ -41,11 +40,11 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding set to 12px
-yabai -m config top_padding 12
-yabai -m config bottom_padding 12
-yabai -m config left_padding 12
-yabai -m config right_padding 12
-yabai -m config window_gap 12
+yabai -m config top_padding 8
+yabai -m config bottom_padding 8
+yabai -m config left_padding 8
+yabai -m config right_padding 8
+yabai -m config window_gap 8
 
 # -- mouse settings --
 
@@ -62,11 +61,15 @@ yabai -m config mouse_action2 resize
 # when window is dropped in center of another window, swap them (on edges it will split it)
 yabai -m mouse_drop_action swap
 
-
 # disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
 yabai -m rule --add app="^QuickTime Player$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^super-cpp-bros$" manage=off
+yabai -m rule --add app="^Python$" manage=off
 
 yabai -m config external_bar all:32:0
+#89b4fa
+borders active_color=0x9974C7EC inactive_color=0x3374C7EC width=5.0 style=round &

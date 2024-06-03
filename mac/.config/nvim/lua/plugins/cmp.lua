@@ -8,7 +8,9 @@ cmp.setup({
 	},
 	window = {
 		completion = {
-			winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+			border = "rounded",
+			winhighlight = "Normal:CmpNormal,FloatBorder:CmpNormal,Search:None",
+			-- winhighlight = "Normal:CmpNormal",
 		},
 		documentation = {
 			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },

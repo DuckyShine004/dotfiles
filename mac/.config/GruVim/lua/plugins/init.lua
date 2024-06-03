@@ -8,6 +8,23 @@ return {
   },
 
   {
+    "vhyrro/luarocks.nvim",
+    priority = 9999, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+    config = true,
+  },
+
+  {
+    "nvim-neorg/neorg",
+    dependencies = { "luarocks.nvim" },
+    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = "*", -- Pin Neorg to the latest stable release
+    opts = function()
+      return require "configs.neorg"
+    end,
+    config = true,
+  },
+
+  {
     "goolord/alpha-nvim",
     event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -27,7 +44,14 @@ return {
     "voldikss/vim-floaterm",
   },
 
-  { "akinsho/toggleterm.nvim", version = "*", config = true },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    -- config = function()
+    --   require "configs.ui.toggleterm"
+    -- end,
+    config = true,
+  },
 
   {
     "iamcco/markdown-preview.nvim",
@@ -37,6 +61,24 @@ return {
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
+  },
+
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    init = function()
+      vim.g.vimtex_view_method = "skim"
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_quickfix_mode = 0
+      vim.g.vimtex_compiler_latexmk = {
+        continuous = 1,
+        callback = 1,
+        build_dir = "",
+        background = 1,
+        view = 1,
+        hooks = {},
+      }
+    end,
   },
 
   {

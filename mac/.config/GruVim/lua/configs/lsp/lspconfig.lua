@@ -56,6 +56,20 @@ lspconfig.pyright.setup {
   filetypes = { "python" },
 }
 
+lspconfig.sqls.setup {
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "sql", "mysql" },
+}
+
+lspconfig.texlab.setup {
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "tex" },
+}
+
 lspconfig.lua_ls.setup {
   on_init = on_init,
   on_attach = on_attach,
@@ -86,7 +100,7 @@ lspconfig.clangd.setup {
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
-  filetypes = { "cpp", "c++" },
+  filetypes = { "cpp", "c++", "c" },
 }
 
 -- Set diagnostic symbols

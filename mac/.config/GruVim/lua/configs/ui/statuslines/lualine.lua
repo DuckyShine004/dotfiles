@@ -40,7 +40,7 @@ local function get_filename_icon()
   local extension = vim.fn.expand "%:e"
   local icon, icon_color = require("nvim-web-devicons").get_icon_color(filename, extension)
 
-  if not icon == nil then
+  if icon ~= nil then
     return icon, icon_color
   end
 

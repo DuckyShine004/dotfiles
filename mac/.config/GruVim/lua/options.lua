@@ -7,7 +7,6 @@ o.clipboard = "unnamed,unnamedplus"
 o.completeopt = "noinsert,menuone,noselect"
 o.ttimeoutlen = 0
 o.hidden = true
-o.termguicolors = true
 o.swapfile = false
 o.encoding = "utf-8"
 o.mouse = "a"
@@ -23,6 +22,7 @@ wo.cursorline = true
 
 opt.guicursor = "n-v-i-c:block-Cursor"
 opt.fillchars = { eob = " " }
+opt.termguicolors = true
 
 cmd "filetype plugin indent on"
 cmd "syntax on"
