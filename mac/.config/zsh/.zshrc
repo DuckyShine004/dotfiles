@@ -9,7 +9,6 @@ ZSH_THEME="dragosmara"
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
 
-
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
 
@@ -35,8 +34,13 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH_DIR/functions/nvims.zsh
 
 # Aliases
+alias nf='neofetch'
+alias ff='fastfetch'
+# alias nvim='nvim-gru'
+alias vi='nvim-gru'
 alias ls='lsd'
 alias clear='clear && printf "\e[3J"'
+alias template='~/.config/scripts/template.sh'
 
 # Exports
 export PATH="/opt/homebrew/bin:$PATH"
@@ -45,6 +49,15 @@ export PYTHONPATH="$(python3 -m site --user-site):$PYTHONPATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
+# Export this version for the nightly build
+# export PATH="$HOME/Documents/software/nightly/bin:$PATH"
 
 # Created by `pipx` on 2024-04-02 09:11:42
 export PATH="$PATH:/Users/duckyshine04/.local/bin"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+pokemon-colorscripts --no-title -n psyduck
