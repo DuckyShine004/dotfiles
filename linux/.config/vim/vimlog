@@ -1,0 +1,175 @@
+
+chdir(/etc)
+fchdir() to previous dir
+sourcing "/etc/vimrc"
+chdir(/usr/share/vim/vimfiles)
+fchdir() to previous dir
+line 11: sourcing "/usr/share/vim/vimfiles/archlinux.vim"
+finished sourcing /usr/share/vim/vimfiles/archlinux.vim
+continuing in /etc/vimrc
+finished sourcing /etc/vimrc
+chdir(/home/duckyshine04)
+fchdir() to previous dir
+sourcing "$HOME/.vimrc"
+chdir(/usr/share/vim/vim91/syntax)
+fchdir() to previous dir
+line 3: sourcing "/usr/share/vim/vim91/syntax/syntax.vim"
+chdir(/usr/share/vim/vim91/syntax)
+fchdir() to previous dir
+line 20: sourcing "/usr/share/vim/vim91/syntax/synload.vim"
+chdir(/usr/share/vim/vim91/syntax)
+fchdir() to previous dir
+line 22: sourcing "/usr/share/vim/vim91/syntax/syncolor.vim"
+chdir(/usr/share/vim/vim91/colors/lists)
+fchdir() to previous dir
+line 57: sourcing "/usr/share/vim/vim91/colors/lists/default.vim"
+finished sourcing /usr/share/vim/vim91/colors/lists/default.vim
+continuing in /usr/share/vim/vim91/syntax/syncolor.vim
+finished sourcing /usr/share/vim/vim91/syntax/syncolor.vim
+continuing in /usr/share/vim/vim91/syntax/synload.vim
+finished sourcing /usr/share/vim/vim91/syntax/synload.vim
+continuing in /usr/share/vim/vim91/syntax/syntax.vim
+chdir(/usr/share/vim/vim91)
+fchdir() to previous dir
+line 26: sourcing "/usr/share/vim/vim91/filetype.vim"
+chdir(/usr/share/vim/vimfiles/ftdetect)
+fchdir() to previous dir
+line 3133: sourcing "/usr/share/vim/vimfiles/ftdetect/meson.vim"
+finished sourcing /usr/share/vim/vimfiles/ftdetect/meson.vim
+continuing in /usr/share/vim/vim91/filetype.vim
+finished sourcing /usr/share/vim/vim91/filetype.vim
+continuing in /usr/share/vim/vim91/syntax/syntax.vim
+Executing FileType Autocommands for "*"
+autocommand 0verbose exe "set syntax=" . expand("<amatch>")
+
+Executing BufRead Autocommands for "*"
+autocommand if !did_filetype() && expand("<amatch>") !~ g:ft_ignore_pat | runtime! scripts.vim | endif
+
+chdir(/usr/share/vim/vim91)
+fchdir() to previous dir
+line 0: sourcing "/usr/share/vim/vim91/scripts.vim"
+chdir(/usr/share/vim/vim91/autoload/dist)
+fchdir() to previous dir
+line 27: sourcing "/usr/share/vim/vim91/autoload/dist/script.vim"
+finished sourcing /usr/share/vim/vim91/autoload/dist/script.vim
+continuing in /usr/share/vim/vim91/scripts.vim
+finished sourcing /usr/share/vim/vim91/scripts.vim
+continuing in BufRead Autocommands for "*"
+Executing BufRead Autocommands for "*"
+autocommand if !did_filetype() && expand("<amatch>") !~ g:ft_ignore_pat    && (expand("<amatch>") =~# '\.conf$'^I|| getline(1) =~ '^#' || getline(2) =~ '^#'^I|| getline(3) =~ '^#' || getline(4) =~ '^#'^I|| getline(5) =~ '^#') |   setf FALLBACK conf | endif
+
+finished sourcing /usr/share/vim/vim91/syntax/syntax.vim
+continuing in /home/duckyshine04/.vimrc
+chdir(/home/duckyshine04/.vim/autoload)
+fchdir() to previous dir
+line 10: sourcing "/home/duckyshine04/.vim/autoload/plug.vim"
+finished sourcing /home/duckyshine04/.vim/autoload/plug.vim
+continuing in /home/duckyshine04/.vimrc
+chdir(/usr/share/vim/vim91)
+fchdir() to previous dir
+line 14: sourcing "/usr/share/vim/vim91/ftoff.vim"
+finished sourcing /usr/share/vim/vim91/ftoff.vim
+continuing in plug#end
+chdir(/usr/share/vim/vim91)
+fchdir() to previous dir
+line 86: sourcing "/usr/share/vim/vim91/filetype.vim"
+chdir(/usr/share/vim/vimfiles/ftdetect)
+fchdir() to previous dir
+line 3133: sourcing "/usr/share/vim/vimfiles/ftdetect/meson.vim"
+finished sourcing /usr/share/vim/vimfiles/ftdetect/meson.vim
+continuing in /usr/share/vim/vim91/filetype.vim
+finished sourcing /usr/share/vim/vim91/filetype.vim
+continuing in plug#end
+chdir(/usr/share/vim/vim91)
+fchdir() to previous dir
+line 86: sourcing "/usr/share/vim/vim91/ftplugin.vim"
+finished sourcing /usr/share/vim/vim91/ftplugin.vim
+continuing in plug#end
+chdir(/usr/share/vim/vim91)
+fchdir() to previous dir
+line 86: sourcing "/usr/share/vim/vim91/indent.vim"
+finished sourcing /usr/share/vim/vim91/indent.vim
+continuing in plug#end
+                      Error detected while processing /home/duckyshine04/.vimrc:
+line   19:
+...ine04/.vim/plugged/nvim-lspconfig/lua/lspconfig/util.lua:8: attempt to index a nil value (local 'uv')
+line   35:
+...duckyshine04/.vim/plugged/nvim-cmp/lua/cmp/utils/api.lua:3: attempt to index a nil value (field 'api')
+finished sourcing $HOME/.vimrc
+not found in 'packpath': "pack/*/start/*"
+chdir(/usr/share/vim/vimfiles/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vimfiles/plugin/devhelp.vim"
+finished sourcing /usr/share/vim/vimfiles/plugin/devhelp.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/getscriptPlugin.vim"
+finished sourcing /usr/share/vim/vim91/plugin/getscriptPlugin.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/gzip.vim"
+finished sourcing /usr/share/vim/vim91/plugin/gzip.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/logiPat.vim"
+finished sourcing /usr/share/vim/vim91/plugin/logiPat.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/manpager.vim"
+finished sourcing /usr/share/vim/vim91/plugin/manpager.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/matchparen.vim"
+finished sourcing /usr/share/vim/vim91/plugin/matchparen.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/netrwPlugin.vim"
+finished sourcing /usr/share/vim/vim91/plugin/netrwPlugin.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/rrhelper.vim"
+finished sourcing /usr/share/vim/vim91/plugin/rrhelper.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/spellfile.vim"
+finished sourcing /usr/share/vim/vim91/plugin/spellfile.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/tarPlugin.vim"
+finished sourcing /usr/share/vim/vim91/plugin/tarPlugin.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/tohtml.vim"
+finished sourcing /usr/share/vim/vim91/plugin/tohtml.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/vimballPlugin.vim"
+finished sourcing /usr/share/vim/vim91/plugin/vimballPlugin.vim
+chdir(/usr/share/vim/vim91/plugin)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/plugin/zipPlugin.vim"
+finished sourcing /usr/share/vim/vim91/plugin/zipPlugin.vim
+not found in 'packpath': "pack/*/start/*"
+not found in 'runtimepath': "plugin/**/*.vim"
+Reading viminfo file "/home/duckyshine04/.viminfo" info oldfiles
+Executing BufWinEnter Autocommands for "*"
+autocommand autocmd SafeState * ++once call s:Highlight_Matching_Pair()
+
+Executing BufEnter Autocommands for "*"
+autocommand sil call s:LocalBrowse(expand("<amatch>"))
+
+Executing VimEnter Autocommands for "*"
+autocommand sil call s:VimEnter(expand("<amatch>"))
+
+Executing CursorMoved Autocommands for "*"
+autocommand call s:Highlight_Matching_Pair()
+
+Executing SafeState Autocommands for "*"
+autocommand call s:Highlight_Matching_Pair()
+
+chdir(/usr/share/vim/vim91/syntax)
+fchdir() to previous dir
+sourcing "/usr/share/vim/vim91/syntax/syncolor.vim"
+finished sourcing /usr/share/vim/vim91/syntax/syncolor.vim
+
+Writing viminfo file "/home/duckyshine04/.viminfo"
