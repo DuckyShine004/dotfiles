@@ -1,14 +1,22 @@
 " Note that I use this minimal vim configuration for competitive programming!
 
-set background=dark
-colorscheme quiet
+" Set leader key
+let mapleader = "\<Space>"
 
-set guifont=8514oem\ 15
+" Plugins
+call plug#begin('~/.vim/plugged')
+    Plug 'preservim/nerdcommenter'
+call plug#end()
+
+set background=dark
+colorscheme matrix
+
+" set guifont=8514oem\ 15
 set number
 set cursorline
 set clipboard=unnamed,unnamedplus
 set completeopt=noinsert,menuone,noselect
-set ttimeoutlen=0
+set timeout timeoutlen=500 ttimeoutlen=500
 set hidden
 set noswapfile
 set encoding=utf-8
@@ -20,13 +28,17 @@ set expandtab
 set autoindent
 set smartindent
 set autochdir
+set termguicolors
+set nocursorline
 set autoread
-set nocompatible
 set backspace=indent,eol,start
+set fillchars+=vert:\ 
+set foldignore=
 
 filetype plugin indent on
 syntax on
 
+" Reload configuration
 nnoremap <C-r> :source ~/.config/vim/.vimrc<CR>
 
 " Move selected text up and down in visual mode
@@ -34,10 +46,10 @@ vnoremap <S-K> :m '<-2<CR>gv=gv
 vnoremap <S-J> :m '>+1<CR>gv=gv
 
 " Indent and unindent in visual and normal mode
-nnoremap <C-[> <<
-nnoremap <C-]> >>
-vnoremap <C-[> <gv
-vnoremap <C-]> >gv
+nnoremap <leader>[ <<
+vnoremap <leader>[ <gv
+nnoremap <leader>] >>
+vnoremap <leader>] >gv
 
 " Selecting everything
 nnoremap <C-a> ggVG
@@ -53,6 +65,12 @@ nnoremap <C-v> :vsplit <CR><C-w>w
 
 " Split then open terminal in the split window
 nnoremap <C-S-t> :sp<CR><C-w>J10<C-w>_:terminal ++curwin<CR>
+
+" Commenting
+let g:NERDCreateDefaultMappings = 0
+
+nmap <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle
 
 " Automatically update without focusing the window
 augroup AutoRead
